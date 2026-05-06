@@ -1,0 +1,2726 @@
+{
+"openapi": "3.0.3",
+"info": {
+"title": "Gubon Lucid API",
+"description": "API documentation for the Gubon Lucid application.\n\nAuthentication: Most endpoints require the api_key header. If using Swagger UI, click the Authorize button at the top of the page and enter your API key before trying any endpoint.",
+"version": "1.0.0"
+},
+"servers": [
+{
+"url": "https://first-lucid-.base44.app/api",
+"description": "API server"
+}
+],
+"security": [
+{
+"ApiKeyAuth": []
+}
+],
+"paths": {
+"/entities/ContactSubmission": {
+"get": {
+"tags": [
+"Entities - ContactSubmission"
+],
+"summary": "List ContactSubmission records",
+"operationId": "list_ContactSubmission",
+"description": "Retrieve a list of ContactSubmission records with optional filtering, sorting, and pagination.",
+"parameters": [
+{
+"name": "q",
+"in": "query",
+"schema": {
+"type": "string"
+},
+"description": "JSON query filter, e.g. {"status":"active"}"
+},
+{
+"name": "limit",
+"in": "query",
+"schema": {
+"type": "integer",
+"default": 100
+},
+"description": "Maximum number of records to return"
+},
+{
+"name": "skip",
+"in": "query",
+"schema": {
+"type": "integer",
+"default": 0
+},
+"description": "Number of records to skip (pagination)"
+},
+{
+"name": "sort_by",
+"in": "query",
+"schema": {
+"type": "string"
+},
+"description": "Field name to sort by. Prefix with '-' for descending order, e.g. -created_date"
+}
+],
+"responses": {
+"200": {
+"description": "List of records",
+"content": {
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/ContactSubmission"
+}
+}
+}
+}
+}
+}
+},
+"post": {
+"tags": [
+"Entities - ContactSubmission"
+],
+"summary": "Create a ContactSubmission record",
+"operationId": "create_ContactSubmission",
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ContactSubmission"
+},
+"example": {
+"name": "Example name",
+"email": "Example email",
+"message": "Example message"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "Created record",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ContactSubmission"
+}
+}
+}
+}
+}
+},
+"delete": {
+"tags": [
+"Entities - ContactSubmission"
+],
+"summary": "Delete multiple ContactSubmission records",
+"operationId": "delete_many_ContactSubmission",
+"description": "Warning: Passing an empty {} query will delete ALL records in this entity.",
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"type": "object",
+"description": "Query filter to match records to delete"
+},
+"example": {
+"name": "Example name"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "Deletion result",
+"content": {
+"application/json": {
+"schema": {
+"type": "object",
+"properties": {
+"success": {
+"type": "boolean"
+},
+"deleted": {
+"type": "integer"
+}
+}
+}
+}
+}
+}
+}
+}
+},
+"/entities/ContactSubmission/bulk": {
+"post": {
+"tags": [
+"Entities - ContactSubmission"
+],
+"summary": "Bulk create ContactSubmission records",
+"operationId": "bulk_create_ContactSubmission",
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/ContactSubmission"
+}
+},
+"example": [
+{
+"name": "Example name",
+"email": "Example email",
+"message": "Example message"
+}
+]
+}
+}
+},
+"responses": {
+"200": {
+"description": "List of created records",
+"content": {
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/ContactSubmission"
+}
+}
+}
+}
+}
+}
+},
+"put": {
+"tags": [
+"Entities - ContactSubmission"
+],
+"summary": "Bulk update ContactSubmission records",
+"operationId": "bulk_update_ContactSubmission",
+"description": "Each item must include an 'id' field along with the fields to update.",
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/ContactSubmission"
+}
+},
+"example": [
+{
+"id": "<record_id>",
+"name": "Example name",
+"email": "Example email",
+"message": "Example message"
+}
+]
+}
+}
+},
+"responses": {
+"200": {
+"description": "List of updated records",
+"content": {
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/ContactSubmission"
+}
+}
+}
+}
+}
+}
+}
+},
+"/entities/ContactSubmission/update-many": {
+"patch": {
+"tags": [
+"Entities - ContactSubmission"
+],
+"summary": "Update many ContactSubmission records by query",
+"operationId": "update_many_ContactSubmission",
+"description": "Update multiple records matching a query filter. Supports MongoDB update operators ($set, $inc, $push, $pull).",
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"type": "object",
+"required": [
+"query",
+"data"
+],
+"properties": {
+"query": {
+"type": "object",
+"description": "Query filter to match records"
+},
+"data": {
+"type": "object",
+"description": "Update operations to apply"
+}
+}
+},
+"example": {
+"query": {
+"name": "Example name"
+},
+"data": {
+"$set": {
+"name": "Example name"
+}
+}
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "Update result",
+"content": {
+"application/json": {
+"schema": {
+"type": "object",
+"properties": {
+"success": {
+"type": "boolean"
+},
+"updated": {
+"type": "integer"
+},
+"has_more": {
+"type": "boolean"
+}
+}
+}
+}
+}
+}
+}
+}
+},
+"/entities/ContactSubmission/{ContactSubmission_id}": {
+"get": {
+"tags": [
+"Entities - ContactSubmission"
+],
+"summary": "Get a ContactSubmission record by ID",
+"operationId": "get_ContactSubmission",
+"parameters": [
+{
+"name": "ContactSubmission_id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "string"
+},
+"description": "Record ID"
+}
+],
+"responses": {
+"200": {
+"description": "The record",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ContactSubmission"
+}
+}
+}
+}
+}
+},
+"put": {
+"tags": [
+"Entities - ContactSubmission"
+],
+"summary": "Update a ContactSubmission record",
+"operationId": "update_ContactSubmission",
+"parameters": [
+{
+"name": "ContactSubmission_id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "string"
+},
+"description": "Record ID"
+}
+],
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ContactSubmission"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "Updated record",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ContactSubmission"
+}
+}
+}
+}
+}
+},
+"delete": {
+"tags": [
+"Entities - ContactSubmission"
+],
+"summary": "Delete a ContactSubmission record",
+"operationId": "delete_ContactSubmission",
+"description": "Soft-deletes the record. Use the restore endpoint to undo.",
+"parameters": [
+{
+"name": "ContactSubmission_id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "string"
+},
+"description": "Record ID"
+}
+],
+"responses": {
+"200": {
+"description": "Deletion result",
+"content": {
+"application/json": {
+"schema": {
+"type": "object",
+"properties": {
+"success": {
+"type": "boolean"
+}
+}
+}
+}
+}
+}
+}
+}
+},
+"/entities/ContactSubmission/{ContactSubmission_id}/restore": {
+"put": {
+"tags": [
+"Entities - ContactSubmission"
+],
+"summary": "Restore a deleted ContactSubmission record",
+"operationId": "restore_ContactSubmission",
+"parameters": [
+{
+"name": "ContactSubmission_id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "string"
+},
+"description": "Record ID"
+}
+],
+"responses": {
+"200": {
+"description": "Restored record",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ContactSubmission"
+}
+}
+}
+}
+}
+}
+},
+"/entities/Project": {
+"get": {
+"tags": [
+"Entities - Project"
+],
+"summary": "List Project records",
+"operationId": "list_Project",
+"description": "Retrieve a list of Project records with optional filtering, sorting, and pagination.",
+"parameters": [
+{
+"name": "q",
+"in": "query",
+"schema": {
+"type": "string"
+},
+"description": "JSON query filter, e.g. {"status":"active"}"
+},
+{
+"name": "limit",
+"in": "query",
+"schema": {
+"type": "integer",
+"default": 100
+},
+"description": "Maximum number of records to return"
+},
+{
+"name": "skip",
+"in": "query",
+"schema": {
+"type": "integer",
+"default": 0
+},
+"description": "Number of records to skip (pagination)"
+},
+{
+"name": "sort_by",
+"in": "query",
+"schema": {
+"type": "string"
+},
+"description": "Field name to sort by. Prefix with '-' for descending order, e.g. -created_date"
+}
+],
+"responses": {
+"200": {
+"description": "List of records",
+"content": {
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/Project"
+}
+}
+}
+}
+}
+}
+},
+"post": {
+"tags": [
+"Entities - Project"
+],
+"summary": "Create a Project record",
+"operationId": "create_Project",
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/Project"
+},
+"example": {
+"title": "Example title",
+"category": "E-Commerce"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "Created record",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/Project"
+}
+}
+}
+}
+}
+},
+"delete": {
+"tags": [
+"Entities - Project"
+],
+"summary": "Delete multiple Project records",
+"operationId": "delete_many_Project",
+"description": "Warning: Passing an empty {} query will delete ALL records in this entity.",
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"type": "object",
+"description": "Query filter to match records to delete"
+},
+"example": {
+"title": "Example title"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "Deletion result",
+"content": {
+"application/json": {
+"schema": {
+"type": "object",
+"properties": {
+"success": {
+"type": "boolean"
+},
+"deleted": {
+"type": "integer"
+}
+}
+}
+}
+}
+}
+}
+}
+},
+"/entities/Project/bulk": {
+"post": {
+"tags": [
+"Entities - Project"
+],
+"summary": "Bulk create Project records",
+"operationId": "bulk_create_Project",
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/Project"
+}
+},
+"example": [
+{
+"title": "Example title",
+"category": "E-Commerce"
+}
+]
+}
+}
+},
+"responses": {
+"200": {
+"description": "List of created records",
+"content": {
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/Project"
+}
+}
+}
+}
+}
+}
+},
+"put": {
+"tags": [
+"Entities - Project"
+],
+"summary": "Bulk update Project records",
+"operationId": "bulk_update_Project",
+"description": "Each item must include an 'id' field along with the fields to update.",
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/Project"
+}
+},
+"example": [
+{
+"id": "<record_id>",
+"title": "Example title",
+"category": "E-Commerce"
+}
+]
+}
+}
+},
+"responses": {
+"200": {
+"description": "List of updated records",
+"content": {
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/Project"
+}
+}
+}
+}
+}
+}
+}
+},
+"/entities/Project/update-many": {
+"patch": {
+"tags": [
+"Entities - Project"
+],
+"summary": "Update many Project records by query",
+"operationId": "update_many_Project",
+"description": "Update multiple records matching a query filter. Supports MongoDB update operators ($set, $inc, $push, $pull).",
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"type": "object",
+"required": [
+"query",
+"data"
+],
+"properties": {
+"query": {
+"type": "object",
+"description": "Query filter to match records"
+},
+"data": {
+"type": "object",
+"description": "Update operations to apply"
+}
+}
+},
+"example": {
+"query": {
+"title": "Example title"
+},
+"data": {
+"$set": {
+"titgubon-lucid-os/
+├── apps/
+│   ├── web/                    # React + Tailwind 前端
+│   └── api/                    # Node.js + Express API
+├── packages/
+│   ├── db/                     # Prisma ORM
+│   ├── queue/                  # BullMQ jobs
+│   ├── ai/                     # AI Decision Engine
+│   ├── payments/               # Stripe + NewebPay
+│   ├── line/                   # LINE Messaging
+│   └── ws/                     # WebSocket server
+├── infra/
+│   ├── docker/
+│   └── nginx/
+├── .env.example
+├── docker-compose.yml
+└── package.jsongenerator client {
+provider = "prisma-client-js"
+}
+
+datasource db {
+provider = "postgresql"
+url      = env("DATABASE_URL")
+}
+
+model User {
+id        String   @id @default(uuid())
+email     String   @unique
+createdAt DateTime @default(now())
+}
+
+model Report {
+id          String   @id @default(uuid())
+userId      String
+input       Json
+preview     String
+full        String
+status      String   @default("pending")
+paid        Boolean  @default(false)
+createdAt   DateTime @default(now())
+}
+
+model Payment {
+id            String @id @default(uuid())
+reportId      String
+provider      String
+status        String
+idempotencyKey String @unique
+}
+
+model Referral {
+id        String @id @default(uuid())
+userId    String
+code      String @unique
+points    Int    @default(0)
+}export function generateDecision(input: any) {
+const core = `
+【最終決策】
+你必須立即執行「${input.topic}」。
+
+【不執行後果】
+若延遲，將在 14 天內出現不可逆損失，包括資源流失與機會崩塌。
+
+【行動期限】
+48 小時內完成第一步，否則決策優勢歸零。
+
+【核心策略】
+
+1. 立即切斷低效行為
+
+
+2. 集中資源於唯一突破點
+
+
+3. 執行不可回import express from "express";
+import Stripe from "stripe";
+import { PrismaClient } from "@prisma/client";
+import { generateDecision } from "packages/ai/engine";
+
+
+
+const app = express();
+const prisma = new PrismaClient();
+const stripe = new Stripe(process.env.STRIPE_SECRET!, { apiVersion: "2023-10export async function createCheckout(reportId: string) {
+return await stripe.checkout.sessions.create({
+payment_method_types: ["card"],
+line_items: [{
+price_data: {
+currency: "twd",
+product_data: { name: "export async function createCheckout(reportId: string) {
+return await stripe.checkout.sessions.create({
+payment_method_types: ["card"],
+line_items: [{
+price_data: {
+currency: "twd",
+product_data: { name: "GUBON Decision Report" },
+unit_amount: 4900
+},
+quantity: 1
+}],
+mode: "payment",
+success_url: ${process.env.FRONTEND_URL}/success?report=${reportId},
+cancel_url: ${process.env.FRONTEND_URL}
+});
+}app.post("/webhook/stripe", express.raw({ type: 'application/json' }), async (req, res) => {
+const sig = req.headers['stripe-signature']!;
+const event = stripe.webhooks.constructEvent(
+req.body,
+sig,
+process.env.STRIPE_WEBHOOK_SECRET!
+);
+
+if (event.type === "checkout.session.completed") {
+const session = event.data.object;
+
+const exists = await prisma.payment.findUnique({
+where: { idempotencyKey: session.id }
+});
+
+if (exists) return res.sendStatus(200);
+
+await prisma.payment.create({
+data: {
+reportId: session.metadata.reportId,
+provider: "stripe",
+status: "paid",
+idempotencyKey: session.id
+}
+});
+
+await prisma.report.update({
+where: { id: session.metadata.reportId },
+data: { paid: true }
+});
+
+}
+
+res.sendStatus(200);
+});export default function Paywall({ report }) {
+return (
+
+<div className="p-6 bg-black text-white">  
+<h2 className="text-xl font-bold">  
+未解鎖將導致重大損失  
+</h2>  <p className="opacity-70">    
+    你的決策窗口正在關閉，延遲將導致機會永久消失。    
+  </p>    <button
+onClick={() => window.location.href = report.checkoutUrl}
+className="mt-4 bg-red-600 px-6 py-3"
+
+> 
+
+立即解鎖完整決策
+
+  </button>    
+</div>  );
+}import { Queue } from "bullmq";
+
+export const followupQueue = new Queue("followup");
+
+export async function scheduleFollowup(userId: string) {
+await followupQueue.add("remind", { userId }, {
+delay: 3 * 24 * 60 * 60 * 1000
+});
+}export async function sendLine(userId: string) {
+await fetch("https://api.line.me/v2/bot/message/push", {
+method: "POST",
+headers: {
+Authorization: Bearer ${process.env.LINE_TOKEN},
+"Content-Type": "application/json"
+},
+body: JSON.stringify({
+to: userId,
+messages: [{
+type: "text",
+text: "你仍未執行決策。拖延正在放大損失。立即完成。"
+}]
+})
+});
+}import { WebSocketServer } from "ws";
+
+const wss = new WebSocketServer({ port: 8080 });
+
+export function notifyProgress(id: string, step: string) {
+wss.clients.forEach(client => {
+client.send(JSON.stringify({ id, step }));
+});
+}DATABASE_URL=postgresql://user:pass@localhost:5432/gubon
+STRIPE_SECRET=
+STRIPE_WEBHOOK_SECRET=
+FRONTEND_URL=http://localhost:3000
+
+REDIS_URL=redis://localhost:6379
+
+LINE_TOKEN=version: "3.8"
+
+services:
+db:
+image: postgres
+environment:
+POSTGRES_PASSWORD: password
+ports:
+
+"5432:5432"
+
+
+redis:
+image: redis
+ports:
+
+"6379:6379"vercel deploydocker build -t gubon-api .
+docker run -p 3001:3001 gubon-api流量 → 輸入 → AI權威決策 → 預覽 → Paywall → 收款
+→ 解鎖 → LINE追擊 → 裂變 → 再收款// apps/api/src/middleware/apiKey.ts
+
+
+export function apiKeyAuth(req, res, next) {
+const key = req.headers["api_key"];
+
+if (!key || key !== process.env.INTERNAL_API_KEY) {
+return res.status(401).json({ error: "Unauthorized" });
+}
+
+next();
+}// apps/api/src/routes/contact.ts
+
+import express from "express";
+import { PrismaClient } from "@prisma/client";
+import { generateDecision } from "packages/ai/engine";
+import Stripe from "stripe";
+
+const router = express.Router();
+const prisma = new PrismaClient();
+const stripe = new Stripe(process.env.STRIPE_SECRET!, { apiVersion: "2023-10-16" });
+
+router.post("/contact-to-report", async (req, res) => {
+const { name, email, message } = req.body;
+
+// 1. 建立 user
+let user = await prisma.user.findUnique({ where: { email } });
+
+if (!user) {
+user = await prisma.user.create({
+data: { email }
+});
+}
+
+// 2. AI 決策
+const ai = generateDecision({ topic: message });
+
+// 3. 建立 report
+const report = await prisma.report.create({
+data: {
+userId: user.id,
+input: { message },
+preview: ai.preview,
+full: ai.full
+}
+});
+
+// 4. Stripe session
+const session = await stripe.checkout.sessions.create({
+mode: "payment",
+payment_method_types: ["card"],
+metadata: {
+reportId: report.id,
+userId: user.id
+},
+line_items: [{
+price_data: {
+currency: "twd",
+product_data: {
+name: "GUBON 決策報告"
+},
+unit_amount: 4900
+},
+quantity: 1
+}],
+success_url: ${process.env.FRONTEND_URL}/success?report=${report.id},
+cancel_url: process.env.FRONTEND_URL
+});
+
+res.json({
+preview: report.preview,
+checkoutUrl: session.url
+});
+});
+
+export default router;app.post("/webhook/stripe",
+express.raw({ type: "application/json" }),
+async (req, res) => {
+
+const sig = req.headers["stripe-signature"];
+
+let event;
+
+try {
+event = stripe.webhooks.constructEvent(
+req.body,
+sig,
+process.env.STRIPE_WEBHOOK_SECRET!
+);
+} catch {
+return res.sendStatus(400);
+}
+
+if (event.type === "checkout.session.completed") {
+const session = event.data.object as any;
+
+const { reportId, userId } = session.metadata;  
+
+// 冪等  
+const exists = await prisma.payment.findUnique({  
+  where: { idempotencyKey: session.id }  
+});  
+
+if (!exists) {  
+  await prisma.payment.create({  
+    data: {  
+      reportId,  
+      provider: "stripe",  
+      status: "paid",  
+      idempotencyKey: session.id  
+    }  
+  });  
+
+  await prisma.report.update({  
+    where: { id: reportId },  
+    data: { paid: true }  
+  });  
+
+  // 裂變初始化  
+  await prisma.referral.upsert({  
+    where: { userId },  
+    update: {},  
+    create: {  
+      userId,  
+      code: `GUBON-${userId.slice(0,6)}`  
+    }  
+  });  
+
+  // 排程 LINE  
+  await scheduleFollowup(userId);  
+}
+
+}
+
+res.sendStatus(200);
+});// apps/api/src/routes/referral.ts
+
+router.get("/leaderboard", async (req, res) => {
+const top = await prisma.referral.findMany({
+orderBy: { points: "desc" },
+take: 20
+});
+
+res.json(top);
+});// apps/web/src/App.tsx
+
+async function submit(form) {
+const res = await fetch("/api/contact-to-report", {
+method: "POST",
+headers: {
+"Content-Type": "application/json",
+"api_key": process.env.NEXT_PUBLIC_API_KEY
+},
+body: JSON.stringify(form)
+});
+
+return res.json();
+}// apps/web/src/App.tsx
+
+async function submit(form) {
+const res = await fetch("/api/contact-to-report", {
+method: "POST",
+headers: {
+"Content-Type": "application/json",
+"api_key": process.env.NEXT_PUBLIC_API_KEY
+},
+body: JSON.stringify(form)
+});
+
+return res.json();
+}<h2>不解鎖，你將承擔決策失敗成本</h2>
+
+<p>這不是建議，是唯一結果。</p>Base44 表單 → ContactSubmission  
+↓  
+/contact-to-report  
+↓  
+AI 決策（Preview）  
+↓  
+Stripe Paywall  
+↓  
+Webhook 解鎖  
+↓  
+LINE 追殺  
+↓  
+Referral 裂變  
+↓  
+排行榜競爭  
+↓  
+再收款{
+"openapi": "3.0.3",
+"info": {
+"title": "Gubon Lucid API",
+"description": "API documentation for the Gubon Lucid application.\n\nAuthentication: Most endpoints require the api_key header. If using Swagger UI, click the Authorize button at the top of the page and enter your API key before trying any endpoint.",
+"version": "1.0.0"
+},
+"servers": [
+{
+"url": "https://first-lucid-.base44.app/api",
+"description": "API server"
+}
+],
+"security": [
+{
+"ApiKeyAuth": []
+}
+],
+"paths": {
+"/entities/ContactSubmission": {
+"get": {
+"tags": [
+"Entities - ContactSubmission"
+],
+"summary": "List ContactSubmission records",
+"operationId": "list_ContactSubmission",
+"description": "Retrieve a list of ContactSubmission records with optional filtering, sorting, and pagination.",
+"parameters": [
+{
+"name": "q",
+"in": "query",
+"schema": {
+"type": "string"
+},
+"description": "JSON query filter, e.g. {"status":"active"}"
+},
+{
+"name": "limit",
+"in": "query",
+"schema": {
+"type": "integer",
+"default": 100
+},
+"description": "Maximum number of records to return"
+},
+{
+"name": "skip",
+"in": "query",
+"schema": {
+"type": "integer",
+"default": 0
+},
+"description": "Number of records to skip (pagination)"
+},
+{
+"name": "sort_by",
+"in": "query",
+"schema": {
+"type": "string"
+},
+"description": "Field name to sort by. Prefix with '-' for descending order, e.g. -created_date"
+}
+],
+"responses": {
+"200": {
+"description": "List of records",
+"content": {
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/ContactSubmission"
+}
+}
+}
+}
+}
+}
+},
+"post": {
+"tags": [
+"Entities - ContactSubmission"
+],
+"summary": "Create a ContactSubmission record",
+"operationId": "create_ContactSubmission",
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ContactSubmission"
+},
+"example": {
+"name": "Example name",
+"email": "Example email",
+"message": "Example message"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "Created record",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ContactSubmission"
+}
+}
+}
+}
+}
+},
+"delete": {
+"tags": [
+"Entities - ContactSubmission"
+],
+"summary": "Delete multiple ContactSubmission records",
+"operationId": "delete_many_ContactSubmission",
+"description": "Warning: Passing an empty {} query will delete ALL records in this entity.",
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"type": "object",
+"description": "Query filter to match records to delete"
+},
+"example": {
+"name": "Example name"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "Deletion result",
+"content": {
+"application/json": {
+"schema": {
+"type": "object",
+"properties": {
+"success": {
+"type": "boolean"
+},
+"deleted": {
+"type": "integer"
+}
+}
+}
+}
+}
+}
+}
+}
+},
+"/entities/ContactSubmission/bulk": {
+"post": {
+"tags": [
+"Entities - ContactSubmission"
+],
+"summary": "Bulk create ContactSubmission records",
+"operationId": "bulk_create_ContactSubmission",
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/ContactSubmission"
+}
+},
+"example": [
+{
+"name": "Example name",
+"email": "Example email",
+"message": "Example message"
+}
+]
+}
+}
+},
+"responses": {
+"200": {
+"description": "List of created records",
+"content": {
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/ContactSubmission"
+}
+}
+}
+}
+}
+}
+},
+"put": {
+"tags": [
+"Entities - ContactSubmission"
+],
+"summary": "Bulk update ContactSubmission records",
+"operationId": "bulk_update_ContactSubmission",
+"description": "Each item must include an 'id' field along with the fields to update.",
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/ContactSubmission"
+}
+},
+"example": [
+{
+"id": "<record_id>",
+"name": "Example name",
+"email": "Example email",
+"message": "Example message"
+}
+]
+}
+}
+},
+"responses": {
+"200": {
+"description": "List of updated records",
+"content": {
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/ContactSubmission"
+}
+}
+}
+}
+}
+}
+}
+},
+"/entities/ContactSubmission/update-many": {
+"patch": {
+"tags": [
+"Entities - ContactSubmission"
+],
+"summary": "Update many ContactSubmission records by query",
+"operationId": "update_many_ContactSubmission",
+"description": "Update multiple records matching a query filter. Supports MongoDB update operators ($set, $inc, $push, $pull).",
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"type": "object",
+"required": [
+"query",
+"data"
+],
+"properties": {
+"query": {
+"type": "object",
+"description": "Query filter to match records"
+},
+"data": {
+"type": "object",
+"description": "Update operations to apply"
+}
+}
+},
+"example": {
+"query": {
+"name": "Example name"
+},
+"data": {
+"$set": {
+"name": "Example name"
+}
+}
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "Update result",
+"content": {
+"application/json": {
+"schema": {
+"type": "object",
+"properties": {
+"success": {
+"type": "boolean"
+},
+"updated": {
+"type": "integer"
+},
+"has_more": {
+"type": "boolean"
+}
+}
+}
+}
+}
+}
+}
+}
+},
+"/entities/ContactSubmission/{ContactSubmission_id}": {
+"get": {
+"tags": [
+"Entities - ContactSubmission"
+],
+"summary": "Get a ContactSubmission record by ID",
+"operationId": "get_ContactSubmission",
+"parameters": [
+{
+"name": "ContactSubmission_id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "string"
+},
+"description": "Record ID"
+}
+],
+"responses": {
+"200": {
+"description": "The record",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ContactSubmission"
+}
+}
+}
+}
+}
+},
+"put": {
+"tags": [
+"Entities - ContactSubmission"
+],
+"summary": "Update a ContactSubmission record",
+"operationId": "update_ContactSubmission",
+"parameters": [
+{
+"name": "ContactSubmission_id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "string"
+},
+"description": "Record ID"
+}
+],
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ContactSubmission"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "Updated record",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ContactSubmission"
+}
+}
+}
+}
+}
+},
+"delete": {
+"tags": [
+"Entities - ContactSubmission"
+],
+"summary": "Delete a ContactSubmission record",
+"operationId": "delete_ContactSubmission",
+"description": "Soft-deletes the record. Use the restore endpoint to undo.",
+"parameters": [
+{
+"name": "ContactSubmission_id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "string"
+},
+"description": "Record ID"
+}
+],
+"responses": {
+"200": {
+"description": "Deletion result",
+"content": {
+"application/json": {
+"schema": {
+"type": "object",
+"properties": {
+"success": {
+"type": "boolean"
+}
+}
+}
+}
+}
+}
+}
+}
+},
+"/entities/ContactSubmission/{ContactSubmission_id}/restore": {
+"put": {
+"tags": [
+"Entities - ContactSubmission"
+],
+"summary": "Restore a deleted ContactSubmission record",
+"operationId": "restore_ContactSubmission",
+"parameters": [
+{
+"name": "ContactSubmission_id",
+"in": "path",
+"required": true,
+"schema": {
+"type": "string"
+},
+"description": "Record ID"
+}
+],
+"responses": {
+"200": {
+"description": "Restored record",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/ContactSubmission"
+}
+}
+}
+}
+}
+}
+},
+"/entities/Project": {
+"get": {
+"tags": [
+"Entities - Project"
+],
+"summary": "List Project records",
+"operationId": "list_Project",
+"description": "Retrieve a list of Project records with optional filtering, sorting, and pagination.",
+"parameters": [
+{
+"name": "q",
+"in": "query",
+"schema": {
+"type": "string"
+},
+"description": "JSON query filter, e.g. {"status":"active"}"
+},
+{
+"name": "limit",
+"in": "query",
+"schema": {
+"type": "integer",
+"default": 100
+},
+"description": "Maximum number of records to return"
+},
+{
+"name": "skip",
+"in": "query",
+"schema": {
+"type": "integer",
+"default": 0
+},
+"description": "Number of records to skip (pagination)"
+},
+{
+"name": "sort_by",
+"in": "query",
+"schema": {
+"type": "string"
+},
+"description": "Field name to sort by. Prefix with '-' for descending order, e.g. -created_date"
+}
+],
+"responses": {
+"200": {
+"description": "List of records",
+"content": {
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/Project"
+}
+}
+}
+}
+}
+}
+},
+"post": {
+"tags": [
+"Entities - Project"
+],
+"summary": "Create a Project record",
+"operationId": "create_Project",
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/Project"
+},
+"example": {
+"title": "Example title",
+"category": "E-Commerce"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "Created record",
+"content": {
+"application/json": {
+"schema": {
+"$ref": "#/components/schemas/Project"
+}
+}
+}
+}
+}
+},
+"delete": {
+"tags": [
+"Entities - Project"
+],
+"summary": "Delete multiple Project records",
+"operationId": "delete_many_Project",
+"description": "Warning: Passing an empty {} query will delete ALL records in this entity.",
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"type": "object",
+"description": "Query filter to match records to delete"
+},
+"example": {
+"title": "Example title"
+}
+}
+}
+},
+"responses": {
+"200": {
+"description": "Deletion result",
+"content": {
+"application/json": {
+"schema": {
+"type": "object",
+"properties": {
+"success": {
+"type": "boolean"
+},
+"deleted": {
+"type": "integer"
+}
+}
+}
+}
+}
+}
+}
+}
+},
+"/entities/Project/bulk": {
+"post": {
+"tags": [
+"Entities - Project"
+],
+"summary": "Bulk create Project records",
+"operationId": "bulk_create_Project",
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/Project"
+}
+},
+"example": [
+{
+"title": "Example title",
+"category": "E-Commerce"
+}
+]
+}
+}
+},
+"responses": {
+"200": {
+"description": "List of created records",
+"content": {
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/Project"
+}
+}
+}
+}
+}
+}
+},
+"put": {
+"tags": [
+"Entities - Project"
+],
+"summary": "Bulk update Project records",
+"operationId": "bulk_update_Project",
+"description": "Each item must include an 'id' field along with the fields to update.",
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/Project"
+}
+},
+"example": [
+{
+"id": "<record_id>",
+"title": "Example title",
+"category": "E-Commerce"
+}
+]
+}
+}
+},
+"responses": {
+"200": {
+"description": "List of updated records",
+"content": {
+"application/json": {
+"schema": {
+"type": "array",
+"items": {
+"$ref": "#/components/schemas/Project"
+}
+}
+}
+}
+}
+}
+}
+},
+"/entities/Project/update-many": {
+"patch": {
+"tags": [
+"Entities - Project"
+],
+"summary": "Update many Project records by query",
+"operationId": "update_many_Project",
+"description": "Update multiple records matching a query filter. Supports MongoDB update operators ($set, $inc, $push, $pull).",
+"requestBody": {
+"required": true,
+"content": {
+"application/json": {
+"schema": {
+"type": "object",
+"required": [
+"query",
+"data"
+],
+"properties": {
+"query": {
+"type": "object",
+"description": "Query filter to match records"
+},
+"data": {
+"type": "object",
+"description": "Update operations to apply"
+}
+}
+},
+"example": {
+"query": {
+"title": "Example title"
+},
+"data": {
+"$set": {
+"titgubon-lucid-os/
+├── apps/
+│   ├── web/                    # React + Tailwind 前端
+│   └── api/                    # Node.js + Express API
+├── packages/
+│   ├── db/                     # Prisma ORM
+│   ├── queue/                  # BullMQ jobs
+│   ├── ai/                     # AI Decision Engine
+│   ├── payments/               # Stripe + NewebPay
+│   ├── line/                   # LINE Messaging
+│   └── ws/                     # WebSocket server
+├── infra/
+│   ├── docker/
+│   └── nginx/
+├── .env.example
+├── docker-compose.yml
+└── package.jsongenerator client {
+provider = "prisma-client-js"
+}
+
+datasource db {
+provider = "postgresql"
+url      = env("DATABASE_URL")
+}
+
+model User {
+id        String   @id @default(uuid())
+email     String   @unique
+createdAt DateTime @default(now())
+}
+
+model Report {
+id          String   @id @default(uuid())
+userId      String
+input       Json
+preview     String
+full        String
+status      String   @default("pending")
+paid        Boolean  @default(false)
+createdAt   DateTime @default(now())
+}
+
+model Payment {
+id            String @id @default(uuid())
+reportId      String
+provider      String
+status        String
+idempotencyKey String @unique
+}
+
+model Referral {
+id        String @id @default(uuid())
+userId    String
+code      String @unique
+points    Int    @default(0)
+}export function generateDecision(input: any) {
+const core = `
+【最終決策】
+你必須立即執行「${input.topic}」。
+
+【不執行後果】
+若延遲，將在 14 天內出現不可逆損失，包括資源流失與機會崩塌。
+
+【行動期限】
+48 小時內完成第一步，否則決策優勢歸零。
+
+【核心策略】
+
+1. 立即切斷低效行為
+
+
+2. 集中資源於唯一突破點
+
+
+3. 執行不可回import express from "express";
+import Stripe from "stripe";
+import { PrismaClient } from "@prisma/client";
+import { generateDecision } from "packages/ai/engine";
+
+
+
+const app = express();
+const prisma = new PrismaClient();
+const stripe = new Stripe(process.env.STRIPE_SECRET!, { apiVersion: "2023-10export async function createCheckout(reportId: string) {
+return await stripe.checkout.sessions.create({
+payment_method_types: ["card"],
+line_items: [{
+price_data: {
+currency: "twd",
+product_data: { name: "export async function createCheckout(reportId: string) {
+return await stripe.checkout.sessions.create({
+payment_method_types: ["card"],
+line_items: [{
+price_data: {
+currency: "twd",
+product_data: { name: "GUBON Decision Report" },
+unit_amount: 4900
+},
+quantity: 1
+}],
+mode: "payment",
+success_url: ${process.env.FRONTEND_URL}/success?report=${reportId},
+cancel_url: ${process.env.FRONTEND_URL}
+});
+}app.post("/webhook/stripe", express.raw({ type: 'application/json' }), async (req, res) => {
+const sig = req.headers['stripe-signature']!;
+const event = stripe.webhooks.constructEvent(
+req.body,
+sig,
+process.env.STRIPE_WEBHOOK_SECRET!
+);
+
+if (event.type === "checkout.session.completed") {
+const session = event.data.object;
+
+const exists = await prisma.payment.findUnique({
+where: { idempotencyKey: session.id }
+});
+
+if (exists) return res.sendStatus(200);
+
+await prisma.payment.create({
+data: {
+reportId: session.metadata.reportId,
+provider: "stripe",
+status: "paid",
+idempotencyKey: session.id
+}
+});
+
+await prisma.report.update({
+where: { id: session.metadata.reportId },
+data: { paid: true }
+});
+
+}
+
+res.sendStatus(200);
+});export default function Paywall({ report }) {
+return (
+
+<div className="p-6 bg-black text-white">  
+<h2 className="text-xl font-bold">  
+未解鎖將導致重大損失  
+</h2>  <p className="opacity-70">    
+    你的決策窗口正在關閉，延遲將導致機會永久消失。    
+  </p>    <button
+onClick={() => window.location.href = report.checkoutUrl}
+className="mt-4 bg-red-600 px-6 py-3"
+
+> 
+
+立即解鎖完整決策
+
+  </button>    
+</div>  );
+}import { Queue } from "bullmq";
+
+export const followupQueue = new Queue("followup");
+
+export async function scheduleFollowup(userId: string) {
+await followupQueue.add("remind", { userId }, {
+delay: 3 * 24 * 60 * 60 * 1000
+});
+}export async function sendLine(userId: string) {
+await fetch("https://api.line.me/v2/bot/message/push", {
+method: "POST",
+headers: {
+Authorization: Bearer ${process.env.LINE_TOKEN},
+"Content-Type": "application/json"
+},
+body: JSON.stringify({
+to: userId,
+messages: [{
+type: "text",
+text: "你仍未執行決策。拖延正在放大損失。立即完成。"
+}]
+})
+});
+}import { WebSocketServer } from "ws";
+
+const wss = new WebSocketServer({ port: 8080 });
+
+export function notifyProgress(id: string, step: string) {
+wss.clients.forEach(client => {
+client.send(JSON.stringify({ id, step }));
+});
+}DATABASE_URL=postgresql://user:pass@localhost:5432/gubon
+STRIPE_SECRET=
+STRIPE_WEBHOOK_SECRET=
+FRONTEND_URL=http://localhost:3000
+
+REDIS_URL=redis://localhost:6379
+
+LINE_TOKEN=version: "3.8"
+
+services:
+db:
+image: postgres
+environment:
+POSTGRES_PASSWORD: password
+ports:
+
+"5432:5432"
+
+
+redis:
+image: redis
+ports:
+
+"6379:6379"vercel deploydocker build -t gubon-api .
+docker run -p 3001:3001 gubon-api流量 → 輸入 → AI權威決策 → 預覽 → Paywall → 收款
+→ 解鎖 → LINE追擊 → 裂變 → 再收款// apps/api/src/middleware/apiKey.ts
+
+
+export function apiKeyAuth(req, res, next) {
+const key = req.headers["api_key"];
+
+if (!key || key !== process.env.INTERNAL_API_KEY) {
+return res.status(401).json({ error: "Unauthorized" });
+}
+
+next();
+}// apps/api/src/routes/contact.ts
+
+import express from "express";
+import { PrismaClient } from "@prisma/client";
+import { generateDecision } from "packages/ai/engine";
+import Stripe from "stripe";
+
+const router = express.Router();
+const prisma = new PrismaClient();
+const stripe = new Stripe(process.env.STRIPE_SECRET!, { apiVersion: "2023-10-16" });
+
+router.post("/contact-to-report", async (req, res) => {
+const { name, email, message } = req.body;
+
+// 1. 建立 user
+let user = await prisma.user.findUnique({ where: { email } });
+
+if (!user) {
+user = await prisma.user.create({
+data: { email }
+});
+}
+
+// 2. AI 決策
+const ai = generateDecision({ topic: message });
+
+// 3. 建立 report
+const report = await prisma.report.create({
+data: {
+userId: user.id,
+input: { message },
+preview: ai.preview,
+full: ai.full
+}
+});
+
+// 4. Stripe session
+const session = await stripe.checkout.sessions.create({
+mode: "payment",
+payment_method_types: ["card"],
+metadata: {
+reportId: report.id,
+userId: user.id
+},
+line_items: [{
+price_data: {
+currency: "twd",
+product_data: {
+name: "GUBON 決策報告"
+},
+unit_amount: 4900
+},
+quantity: 1
+}],
+success_url: ${process.env.FRONTEND_URL}/success?report=${report.id},
+cancel_url: process.env.FRONTEND_URL
+});
+
+res.json({
+preview: report.preview,
+checkoutUrl: session.url
+});
+});
+
+export default router;app.post("/webhook/stripe",
+express.raw({ type: "application/json" }),
+async (req, res) => {
+
+const sig = req.headers["stripe-signature"];
+
+let event;
+
+try {
+event = stripe.webhooks.constructEvent(
+req.body,
+sig,
+process.env.STRIPE_WEBHOOK_SECRET!
+);
+} catch {
+return res.sendStatus(400);
+}
+
+if (event.type === "checkout.session.completed") {
+const session = event.data.object as any;
+
+const { reportId, userId } = session.metadata;  
+
+// 冪等  
+const exists = await prisma.payment.findUnique({  
+  where: { idempotencyKey: session.id }  
+});  
+
+if (!exists) {  
+  await prisma.payment.create({  
+    data: {  
+      reportId,  
+      provider: "stripe",  
+      status: "paid",  
+      idempotencyKey: session.id  
+    }  
+  });  
+
+  await prisma.report.update({  
+    where: { id: reportId },  
+    data: { paid: true }  
+  });  
+
+  // 裂變初始化  
+  await prisma.referral.upsert({  
+    where: { userId },  
+    update: {},  
+    create: {  
+      userId,  
+      code: `GUBON-${userId.slice(0,6)}`  
+    }  
+  });  
+
+  // 排程 LINE  
+  await scheduleFollowup(userId);  
+}
+
+}
+
+res.sendStatus(200);
+});// apps/api/src/routes/referral.ts
+
+router.get("/leaderboard", async (req, res) => {
+const top = await prisma.referral.findMany({
+orderBy: { points: "desc" },
+take: 20
+});
+
+res.json(top);
+});// apps/web/src/App.tsx
+
+async function submit(form) {
+const res = await fetch("/api/contact-to-report", {
+method: "POST",
+headers: {
+"Content-Type": "application/json",
+"api_key": process.env.NEXT_PUBLIC_API_KEY
+},
+body: JSON.stringify(form)
+});
+
+return res.json();
+}// apps/web/src/App.tsx
+
+async function submit(form) {
+const res = await fetch("/api/contact-to-report", {
+method: "POST",
+headers: {
+"Content-Type": "application/json",
+"api_key": process.env.NEXT_PUBLIC_API_KEY
+},
+body: JSON.stringify(form)
+});
+
+return res.json();
+}<h2>不解鎖，你將承擔決策失敗成本</h2>
+
+<p>這不是建議，是唯一結果。</p>Base44 表單 → ContactSubmission  
+↓  
+/contact-to-report  
+↓  
+AI 決策（Preview）  
+↓  
+Stripe Paywall  
+↓  
+Webhook 解鎖  
+↓  
+LINE 追殺  
+↓  
+Referral 裂變  
+↓  
+排行榜競爭  
+↓  
+再收款{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "GUBON LUCID OS API",
+    "version": "2.0.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.gubon.app"
+    }
+  ],
+  "paths": {
+    "/v1/intake": {
+# 对 REST API 进行身份验证
+
+你可以对 REST API 进行身份验证，以访问更多终结点并获得更高的速率限制。
+
+## 关于身份验证
+
+许多 REST API 终结点需要身份验证或是在进行身份验证后返回其他信息。 此外，进行身份验证后，每小时可以发出更多请求。
+
+要对请求进行身份验证，需要提供具有所需作用域或权限的身份验证令牌。 有几种不同方式获取令牌：可以创建 personal access token，生成包含 GitHub App 的令牌，或使用 GitHub Actions 工作流中内置的 `GITHUB_TOKEN`。
+
+创建令牌后，可以通过在请求的 `Authorization` 标头中发送令牌来对请求进行身份验证。 例如，在以下请求中，请将 `YOUR-TOKEN` 替换为对你的令牌的引用：
+
+```shell
+curl --request GET \
+--url "https://api.github.com/octocat" \
+--header "Authorization: Bearer YOUR-TOKEN" \
+--header "X-GitHub-Api-Version: 2026-03-10"
+```
+
+> \[!NOTE]
+> 在大多数情况下，可以使用 `Authorization: Bearer` 或 `Authorization: token` 传递令牌。 但是，如果要传递 JSON Web 令牌 (JWT)，则必须使用 `Authorization: Bearer`。
+
+### 失败登录限制
+
+如果尝试在没有令牌或令牌权限不足的情况下使用 REST API 终结点，你将收到 `404 Not Found` 或 `403 Forbidden` 响应。 使用无效凭据进行身份验证最初将返回 `401 Unauthorized` 响应。
+
+在短时间内检测到多个使用无效凭据的请求后，API 将暂时拒绝该用户的所有身份验证尝试（包括使用有效凭据的尝试），并返回 `403 Forbidden` 响应： 有关详细信息，请参阅“[REST API 的速率限制](/zh/rest/overview/rate-limits-for-the-rest-api)”。
+
+## 使用 personal access token
+
+进行身份验证
+
+如果要将 GitHub REST API 用于个人用途，可以创建 personal access token。 如果可能，GitHub 建议使用 fine-grained personal access token 而不是 personal access token (classic)。 有关创建 personal access token 的详细信息，请参阅 [管理个人访问令牌](/zh/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)。
+
+如果使用的是 fine-grained personal access token，则 fine-grained personal access token 需要特定权限才能访问每个 REST API 终结点。 每个终结点的 REST API 参考文档都说明终结点是否适用于 fine-grained personal access token，并说明令牌使用终结点所需的权限。 某些终结点可能需要多个权限，而某些终结点可能需要多个权限之一。 有关 fine-grained personal access token 可通过各种权限访问哪些 REST API 终结点的概述，请参阅 [细粒度个人访问令牌所需的权限](/zh/rest/overview/permissions-required-for-fine-grained-personal-access-tokens)。
+
+如果使用 personal access token (classic)，则需要特定的范围才能访问每个 REST API 终结点。 有关选择什么作用域的通用指南，请参阅 [OAuth 应用的范围](/zh/apps/oauth-apps/building-oauth-apps/scopes-for-oauth-apps#available-scopes)。
+
+当你向 REST API 发出请求时，Personal access tokens 充当你的身份（受你选择的范围或权限限制）。 因此，请务必保持 personal access tokens 的安全。 有关保护 personal access tokens 安全的更多信息，请参阅 [确保 API 凭据安全](/zh/rest/authentication/keeping-your-api-credentials-secure?apiVersion=2022-11-28)。
+
+### Personal access tokens 和 SAML SSO
+
+如果您使用 personal access token (classic) 访问强制实施 SAML 单点登录 (SSO) 进行身份验证的组织，则在创建后需要对令牌进行授权。 Fine-grained personal access token 在令牌创建期间、授予组织访问权限之前进行授权。 有关详细信息，请参阅“[授权个人访问令牌以与单点登录一起使用](/zh/authentication/authenticating-with-saml-single-sign-on/authorizing-a-personal-access-token-for-use-with-saml-single-sign-on)”。
+
+如果在没有授权 SAML SSO 的 personal access token (classic) 之前就尝试使用它来访问强制执行 SAML SSO 的组织，你可能会收到 `404 Not Found` 或 `403 Forbidden` 错误。 如果收到 `403 Forbidden` 错误，`X-GitHub-SSO` 标头将包含一个 URL，您可以访问该 URL 以授权您的令牌。 URL 将在一小时后过期。
+
+如果您未在尝试使用 personal access token (classic) 访问多个组织之前授权其进行 SAML SSO，则 API 将不会返回需要 SAML SSO 授权的组织的结果，并且 `X-GitHub-SSO` 标头将显示需要 SAML SSO 授权的组织 ID。 例如：`X-GitHub-SSO: partial-results; organizations=21955855,20582480`。
+
+## 使用应用生成的令牌进行身份验证
+
+如果要为组织或代表其他用户使用 API，GitHub 建议使用 GitHub App。 有关详细信息，请参阅“[关于使用 GitHub 应用进行身份验证](/zh/apps/creating-github-apps/authenticating-with-a-github-app/about-authentication-with-a-github-app)”。
+
+每个终结点的 REST API 参考文档都说明终结点是否适用于 GitHub Apps，并说明应用使用终结点所需的权限。 某些终结点可能需要多个权限，而某些终结点可能需要多个权限之一。 有关 GitHub App 可通过各种权限访问哪些 REST API 终结点的概述，请参阅 [GitHub应用所需的权限](/zh/rest/overview/permissions-required-for-github-apps)。
+
+你还可以使用 OAuth app 创建 OAuth 标记以访问 REST API。 但 GitHub 建议改用 GitHub App。 使用 GitHub Apps 可以更好地控制应用拥有的访问权限和权限。
+
+对于 SAML SSO，应用创建的访问令牌会自动获得授权。
+
+### 使用基本身份验证
+
+GitHub Apps 和 OAuth apps 的一些 REST API 终结点要求使用基本身份验证来访问终结点。 你将使用应用的客户端 ID 作为用户名，使用应用的客户端密码作为密码。
+
+例如：
+
+```shell
+curl --request POST \
+--url "https://api.github.com/applications/YOUR_CLIENT_ID/token" \
+--user "YOUR_CLIENT_ID:YOUR_CLIENT_SECRET" \
+--header "Accept: application/vnd.github+json" \
+--header "X-GitHub-Api-Version: 2026-03-10" \
+--data '{
+  "access_token": "ACCESS_TOKEN_TO_CHECK"
+}'
+```
+
+客户端 ID 和客户端密码与应用相关联，而不是与应用所有者或授权应用的用户相关联。 它们用于代表应用执行操作，例如创建访问令牌。
+
+如果你是 GitHub App 或 OAuth app 的所有者，或者你是 GitHub App 的应用管理者，则可在应用的设置页上找到客户端 ID 并生成客户端密码。 导航到应用的设置页：
+
+1. 在 GitHub 上任意页的右上角，单击你的个人资料图片。
+2. 导航到你的帐户设置。
+   * 对于由个人帐户拥有的应用，请单击“设置”\*\*\*\*。
+   * 对于组织拥有的应用：
+     1. 单击“你的组织”。\*\*\*\*
+     2. 在组织右侧，单击“设置”。
+3. 在左边栏中，单击 <svg version="1.1" width="16" height="16" viewBox="0 0 16 16" class="octicon octicon-code" aria-label="code" role="img"><path d="m11.28 3.22 4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L13.94 8l-3.72-3.72a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215Zm-6.56 0a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042L2.06 8l3.72 3.72a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L.47 8.53a.75.75 0 0 1 0-1.06Z"></path></svg>“Developer settings”\*\*\*\*。
+4. 在左侧栏中，单击 **GitHub Apps** 或 **OAuth apps**。
+5. 对于 GitHub Apps，在要访问的 GitHub App 的右侧，单击“编辑\*\*\*\*”。 对于 OAuth apps，请单击要访问的应用。
+6. 在“客户端 ID”旁边\*\*\*\*，你将看到应用的客户端 ID。
+7. 在“客户端密码”旁边\*\*\*\*，单击“生成新客户端密码”，为应用生成客户端密码\*\*\*\*。
+
+## 在 GitHub Actions 工作流中进行身份验证
+
+如果要在 GitHub Actions 工作流中使用 API，则 GitHub 建议使用内置 `GITHUB_TOKEN` 进行身份验证，而不是创建令牌。 可以使用 `GITHUB_TOKEN` 密钥向 `permissions` 授予权限。 有关详细信息，请参阅“[在工作流中使用 GITHUB\_TOKEN 进行身份验证](/zh/actions/security-guides/automatic-token-authentication#modifying-the-permissions-for-the-github_token)”。
+
+如果无法执行此操作，可以将令牌存储为机密，并在 GitHub Actions 工作流中使用该机密的名称。 有关机密的详细信息，请参阅 [在 GitHub Actions 中使用机密](/zh/actions/security-guides/encrypted-secrets)。
+
+### 在 GitHub Actions 工作流中使用 GitHub CLI
+
+进行身份验证
+
+要使用 GitHub CLI
+在 GitHub Actions 工作流中向 API 发出经过身份验证的请求，可以将值 `GITHUB_TOKEN` 存储为环境变量，并使用 `run` 关键字执行 GitHub CLI
+`api` 子命令。 有关 `run` 关键字的详细信息，请参阅 [GitHub Actions 的工作流语法](/zh/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun)。
+
+在以下示例工作流中，将 `PATH` 替换为终结点的路径。 有关路径的详细信息，请参阅 [REST API 入门](/zh/rest/guides/getting-started-with-the-rest-api?tool=cli#path)。
+
+```yaml
+jobs:
+  use_api:
+    runs-on: ubuntu-latest
+    permissions: {}
+    steps:
+      - env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh api /PATH
+```
+
+### 在 GitHub Actions 工作流中使用 `curl` 进行身份验证
+
+要使用 `curl` 向 GitHub Actions 工作流中的 API 发出经过身份验证的请求，可以将值 `GITHUB_TOKEN` 存储为环境变量，并使用 `run` 关键字对 API 执行 `curl` 请求。 有关 `run` 关键字的详细信息，请参阅 [GitHub Actions 的工作流语法](/zh/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsrun)。
+
+在以下示例工作流中，将 `PATH` 替换为终结点的路径。 有关路径的详细信息，请参阅 [REST API 入门](/zh/rest/guides/getting-started-with-the-rest-api?tool=cli#path)。
+
+```yaml copy
+jobs:
+  use_api:
+    runs-on: ubuntu-latest
+    permissions: {}
+    steps:
+      - env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl --request GET \
+          --url "https://api.github.com/PATH" \
+          --header "Authorization: Bearer $GH_TOKEN"
+```
+
+### 在 GitHub Actions 工作流中使用 JavaScript 进行身份验证
+
+有关如何使用 JavaScript 在 GitHub Actions 工作流中进行身份验证的示例，请参阅 [使用 REST API 和 JavaScript 编写脚本](/zh/rest/guides/scripting-with-the-rest-api-and-javascript#authenticating-in-github-actions)。
+
+## 使用用户名和密码进行身份验证
+
+不支持使用用户名和密码进行身份验证。 如果尝试使用用户名和密码进行身份验证，你将收到 4xx 错误。
+
+## 延伸阅读
+
+* [确保 API 凭据安全](/zh/rest/overview/keeping-your-api-credentials-secure)
+* [REST API 入门](/zh/rest/guides/getting-started-with-the-rest-api#authentication)Create GitHub App Token
+test
+
+GitHub Action for creating a GitHub App installation access token.
+
+Usage
+In order to use this action, you need to:
+
+Register new GitHub App.
+Store the App's Client ID in your repository variables (example: APP_CLIENT_ID).
+Store the App's private key in your repository secrets (example: APP_PRIVATE_KEY).
+Important
+
+An installation access token expires after 1 hour. Please see this comment for alternative approaches if you have long-running processes.
+
+Create a token for the current repository
+name: Run tests on staging
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  hello-world:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/create-github-app-token@v3
+        id: app-token
+        with:
+          client-id: ${{ vars.APP_CLIENT_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+      - uses: ./actions/staging-tests
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+Use app token with actions/checkout
+on: [pull_request]
+
+jobs:
+  auto-format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/create-github-app-token@v3
+        id: app-token
+        with:
+          # required
+          client-id: ${{ vars.APP_CLIENT_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+      - uses: actions/checkout@v6
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+          ref: ${{ github.head_ref }}
+          # Make sure the value of GITHUB_TOKEN will not be persisted in repo's config
+          persist-credentials: false
+      - uses: creyD/prettier_action@v6
+        with:
+          github_token: ${{ steps.app-token.outputs.token }}
+Create a git committer string for an app installation
+on: [pull_request]
+
+jobs:
+  auto-format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/create-github-app-token@v3
+        id: app-token
+        with:
+          # required
+          client-id: ${{ vars.APP_CLIENT_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+      - name: Get GitHub App User ID
+        id: get-user-id
+        run: echo "user-id=$(gh api "/users/${{ steps.app-token.outputs.app-slug }}[bot]" --jq .id)" >> "$GITHUB_OUTPUT"
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+      - id: committer
+        run: echo "string=${{ steps.app-token.outputs.app-slug }}[bot] <${{ steps.get-user-id.outputs.user-id }}+${{ steps.app-token.outputs.app-slug }}[bot]@users.noreply.github.com>"  >> "$GITHUB_OUTPUT"
+      - run: echo "committer string is ${{ steps.committer.outputs.string }}"
+Configure git CLI for an app's bot user
+on: [pull_request]
+
+jobs:
+  auto-format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/create-github-app-token@v3
+        id: app-token
+        with:
+          # required
+          client-id: ${{ vars.APP_CLIENT_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+      - name: Get GitHub App User ID
+        id: get-user-id
+        run: echo "user-id=$(gh api "/users/${{ steps.app-token.outputs.app-slug }}[bot]" --jq .id)" >> "$GITHUB_OUTPUT"
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+      - run: |
+          git config --global user.name '${{ steps.app-token.outputs.app-slug }}[bot]'
+          git config --global user.email '${{ steps.get-user-id.outputs.user-id }}+${{ steps.app-token.outputs.app-slug }}[bot]@users.noreply.github.com'
+      # git commands like commit work using the bot user
+      - run: |
+          git add .
+          git commit -m "Auto-generated changes"
+          git push
+Tip
+
+The <BOT USER ID> is the numeric user ID of the app's bot user, which can be found under https://api.github.com/users/<app-slug>%5Bbot%5D.
+
+For example, we can check at https://api.github.com/users/dependabot[bot] to see the user ID of Dependabot is 49699333.
+
+Alternatively, you can use the octokit/request-action to get the ID.
+
+Create a token for all repositories in the current owner's installation
+on: [workflow_dispatch]
+
+jobs:
+  hello-world:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/create-github-app-token@v3
+        id: app-token
+        with:
+          client-id: ${{ vars.APP_CLIENT_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+      - uses: peter-evans/create-or-update-comment@v4
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+          issue-number: ${{ github.event.issue.number }}
+          body: "Hello, World!"
+Create a token for multiple repositories in the current owner's installation
+on: [issues]
+
+jobs:
+  hello-world:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/create-github-app-token@v3
+        id: app-token
+        with:
+          client-id: ${{ vars.APP_CLIENT_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: |
+            repo1
+            repo2
+      - uses: peter-evans/create-or-update-comment@v4
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+          issue-number: ${{ github.event.issue.number }}
+          body: "Hello, World!"
+Create a token for all repositories in another owner's installation
+on: [issues]
+
+jobs:
+  hello-world:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/create-github-app-token@v3
+        id: app-token
+        with:
+          client-id: ${{ vars.APP_CLIENT_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          owner: another-owner
+      - uses: peter-evans/create-or-update-comment@v4
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+          issue-number: ${{ github.event.issue.number }}
+          body: "Hello, World!"
+Create a token with specific permissions
+Note
+
+Selected permissions must be granted to the installation of the specified app and repository owner. Setting a permission that the installation does not have will result in an error.
+
+on: [issues]
+
+jobs:
+  hello-world:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/create-github-app-token@v3
+        id: app-token
+        with:
+          client-id: ${{ vars.APP_CLIENT_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          permission-issues: write
+      - uses: peter-evans/create-or-update-comment@v4
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+          issue-number: ${{ github.event.issue.number }}
+          body: "Hello, World!"
+Create tokens for multiple user or organization accounts
+You can use a matrix strategy to create tokens for multiple user or organization accounts.
+
+Note
+
+See this documentation for information on using multiline strings in workflows.
+
+on: [workflow_dispatch]
+
+jobs:
+  set-matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set.outputs.matrix }}
+    steps:
+      - id: set
+        run: echo 'matrix=[{"owner":"owner1"},{"owner":"owner2","repos":["repo1"]}]' >>"$GITHUB_OUTPUT"
+
+  use-matrix:
+    name: "@${{ matrix.owners-and-repos.owner }} installation"
+    needs: [set-matrix]
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        owners-and-repos: ${{ fromJson(needs.set-matrix.outputs.matrix) }}
+
+    steps:
+      - uses: actions/create-github-app-token@v3
+        id: app-token
+        with:
+          client-id: ${{ vars.APP_CLIENT_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          owner: ${{ matrix.owners-and-repos.owner }}
+          repositories: ${{ join(matrix.owners-and-repos.repos) }}
+      - uses: octokit/request-action@v2.x
+        id: get-installation-repositories
+        with:
+          route: GET /installation/repositories
+        env:
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+      - run: echo "$MULTILINE_JSON_STRING"
+        env:
+          MULTILINE_JSON_STRING: ${{ steps.get-installation-repositories.outputs.data }}
+Run the workflow in a github.com repository against an organization in GitHub Enterprise Server
+on: [push]
+
+jobs:
+  create_issue:
+    runs-on: self-hosted
+
+    steps:
+      - name: Create GitHub App token
+        id: create_token
+        uses: actions/create-github-app-token@v3
+        with:
+          client-id: ${{ vars.GHES_APP_CLIENT_ID }}
+          private-key: ${{ secrets.GHES_APP_PRIVATE_KEY }}
+          owner: ${{ vars.GHES_INSTALLATION_ORG }}
+          github-api-url: ${{ vars.GITHUB_API_URL }}
+
+      - name: Create issue
+        uses: octokit/request-action@v2.x
+        with:
+          route: POST /repos/${{ github.repository }}/issues
+          title: "New issue from workflow"
+          body: "This is a new issue created from a GitHub Action workflow."
+        env:
+          GITHUB_TOKEN: ${{ steps.create_token.outputs.token }}
+Proxy support
+This action relies on Node.js native proxy support.
+
+If you set HTTP_PROXY or HTTPS_PROXY, also set NODE_USE_ENV_PROXY: "1" on the action step so Node.js honors those variables. If you need proxy bypass rules, set NO_PROXY alongside them.
+
+- uses: actions/create-github-app-token@v3
+  id: app-token
+  env:
+    HTTPS_PROXY: http://proxy.example.com:8080
+    NO_PROXY: github.example.com
+    NODE_USE_ENV_PROXY: "1"
+  with:
+    client-id: ${{ vars.APP_CLIENT_ID }}
+    private-key: ${{ secrets.APP_PRIVATE_KEY }}
+Inputs
+client-id or app-id
+Required: GitHub App Client ID.
+
+Note
+
+The legacy app-id input is also accepted, but client-id is recommended.
+
+private-key
+Required: GitHub App private key. Escaped newlines (\\n) will be automatically replaced with actual newlines.
+
+Some other actions may require the private key to be Base64 encoded. To avoid recreating a new secret, it can be decoded on the fly, but it needs to be managed securely. Here is an example of how this can be achieved:
+
+steps:
+  - name: Decode the GitHub App Private Key
+    id: decode
+    run: |
+      private_key=$(echo "${{ secrets.APP_PRIVATE_KEY }}" | base64 -d | awk 'BEGIN {ORS="\\n"} {print}' | head -c -2) &> /dev/null
+      echo "::add-mask::$private_key"
+      echo "private-key=$private_key" >> "$GITHUB_OUTPUT"
+  - name: Generate GitHub App Token
+    id: app-token
+    uses: actions/create-github-app-token@v3
+    with:
+      client-id: ${{ vars.APP_CLIENT_ID }}
+      private-key: ${{ steps.decode.outputs.private-key }}
+owner
+Optional: The owner of the GitHub App installation. If empty, defaults to the current repository owner.
+
+repositories
+Optional: Comma or newline-separated list of repositories to grant access to.
+
+Note
+
+If owner is set and repositories is empty, access will be scoped to all repositories in the provided repository owner's installation. If owner and repositories are empty, access will be scoped to only the current repository.
+
+permission-<permission name>
+Optional: The permissions to grant to the token. By default, the token inherits all of the installation's permissions. We recommend to explicitly list the permissions that are required for a use case. This follows GitHub's own recommendation to control permissions of GITHUB_TOKEN in workflows. The documentation also lists all available permissions, just prefix the permission key with permission- (e.g., pull-requests → permission-pull-requests).
+
+The reason we define one permision-<permission name> input per permission is to benefit from type intelligence and input validation built into GitHub's action runner.
+
+skip-token-revoke
+Optional: If true, the token will not be revoked when the current job is complete.
+
+github-api-url
+Optional: The URL of the GitHub REST API. Defaults to the URL of the GitHub Rest API where the workflow is run from.
+
+Outputs
+token
+GitHub App installation access token.
+
+installation-id
+GitHub App installation ID.
+
+app-slug
+GitHub App slug.
+
+How it works
+The action creates an installation access token using the POST /app/installations/{installation_id}/access_tokens endpoint. By default,
+
+The token is scoped to the current repository or repositories if set.
+The token inherits all the installation's permissions.
+The token is set as output token which can be used in subsequent steps.
+Unless the skip-token-revoke input is set to true, the token is revoked in the post step of the action, which means it cannot be passed to another job.
+The token is masked, it cannot be logged accidentally.
+Note
+
+Installation permissions can differ from the app's permissions they belong to. Installation permissions are set when an app is installed on an account. When the app adds more permissions after the installation, an account administrator will have to approve the new permissions before they are set on the installation.
+
+Contributing
+CONTRIBUTING.md
+
+License
+MIT
